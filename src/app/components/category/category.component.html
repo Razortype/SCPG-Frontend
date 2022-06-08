@@ -1,5 +1,17 @@
 <div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action c-row" aria-current="true" *ngFor="let category of this.categories" onclick="getRow()">
-        {{category.categoryName}}
+    <a href="/products/all" class="list-group-item list-group-item-action active" *ngIf="getCurrentCategory() == 'all'">
+        All
     </a>
-  </div>
+    <a href="/products/all" class="list-group-item list-group-item-action" *ngIf="getCurrentCategory() != 'all'">
+        All
+    </a>
+    <a href="/products/{{category.categoryName}}" class="list-group-item list-group-item-action" *ngFor="let category of categories" (click)="onClick($event.target)">
+        <div *ngIf="getCurrentCategory() == category.categoryName" style="color:blue">
+            {{category.categoryName}}
+        </div>
+        <div *ngIf="getCurrentCategory() != category.categoryName">
+            {{category.categoryName}}
+        </div>
+    </a>
+
+</div>
